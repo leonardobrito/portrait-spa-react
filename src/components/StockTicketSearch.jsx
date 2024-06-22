@@ -1,13 +1,12 @@
 import { useState } from "react";
 import './StockTicketSearch.css'
-import { useDispatch } from 'react-redux'
-import { search } from '../store/features/stockTicket'
-
+import { useFetch } from "../hooks/useFetch";
 
 function StockTicketSearch({ ...rest }) {
-  const dispatch = useDispatch()
-
+  const [query, setQuery] = useState('')
   const [input, setInput] = useState('')
+
+  useFetch(query)
 
   const handleInputChange = (event) => {
     setInput(event.target.value)
@@ -15,10 +14,7 @@ function StockTicketSearch({ ...rest }) {
 
   const handleSearchSubmit = () => {
     if (input.length === 0) return;
-
-    dispatch(search(input))
-    console.log('Searching...', input);
-    // dipatch(input.value); call Redux
+    setQuery(input)
   }
 
   return (

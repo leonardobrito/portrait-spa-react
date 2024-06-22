@@ -1,9 +1,6 @@
 import './StockTicketTable.css'
 
 function StockTicketTable({ stockTicket, ...rest }) {
-
-  console.log(stockTicket);
-
   return (
     <div {...rest}>
       <table className="table">

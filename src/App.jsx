@@ -1,10 +1,10 @@
 import './App.css'
 import { Home } from './pages/Home'
-import store from './store'
+import { setupStore } from './store'
 import { Provider } from 'react-redux'
 function App() {
   return (
-    <Provider store={store}>
+    <Provider store={setupStore()}>
       <Home />
     </Provider>
   )

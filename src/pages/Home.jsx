@@ -1,16 +1,22 @@
 import { StockTicketSearch } from '../components/StockTicketSearch'
 import { StockTicketTable } from '../components/StockTicketTable'
-import { useSelector } from 'react-redux'
+import { Loading } from '../components/Loading'
+import { useStockTicket } from '../hooks/useStockTicket'
+import './Home.css'
+
 function Home() {
-  const stockTicket = useSelector((state) => state.stockTicket.value)
+  const { data, isLoading, error } = useStockTicket()
 
   return (
     <>
       <StockTicketSearch className="search-component" />
+      {error && <span className="home-error">{error}</span>}
+
+      {isLoading && <Loading className="home-loading" />}
       {
-        stockTicket.length > 0 && <StockTicketTable
+        data.length > 0 && <StockTicketTable
           className="table-component"
-          stockTicket={stockTicket}
+          stockTicket={data}
         />
       }
     </>

@@ -1,8 +1,13 @@
-import { configureStore } from '@reduxjs/toolkit'
-import stockTicketReducer from './features/stockTicket'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import stockTicketReducer from './stockTicket'
 
-export default configureStore({
-  reducer: {
-    stockTicket: stockTicketReducer
-  },
+const rootReducer = combineReducers({
+  stockTicket: stockTicketReducer
 })
+
+export const setupStore = preloadedState => {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState
+  })
+}
